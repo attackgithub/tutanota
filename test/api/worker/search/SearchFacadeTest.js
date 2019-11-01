@@ -1,5 +1,5 @@
 // @flow
-import o from "ospec/ospec.js"
+import o from "ospec"
 import {SearchFacade} from "../../../../src/api/worker/search/SearchFacade"
 import {MailTypeRef} from "../../../../src/api/entities/tutanota/Mail"
 import {aes256RandomKey} from "../../../../src/api/worker/crypto/Aes"

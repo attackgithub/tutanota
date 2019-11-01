@@ -1,5 +1,5 @@
 // @flow
-import o from "ospec/ospec.js"
+import o from "ospec"
 import {
 	_replaceLoneSurrogates,
 	_stringToUtf8Uint8ArrayLegacy,

@@ -1,5 +1,5 @@
 //@flow
-import o from "ospec/ospec.js"
+import o from "ospec"
 import DesktopUtils from "../../../src/desktop/DesktopUtils.js"
 import path from 'path'
 import {isMailAddress} from "../../../src/misc/FormatValidator"

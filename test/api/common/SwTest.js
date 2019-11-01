@@ -1,5 +1,5 @@
 // @flow
-import o from "ospec/ospec.js"
+import o from "ospec"
 import {ServiceWorker} from "../../../src/serviceworker/sw.js"
 
 const fromNetwork = (url: string) => ({}: any)

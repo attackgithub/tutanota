@@ -1,4 +1,4 @@
-global.env = require('../../buildSrc/env.js').create(null, "http://localhost:9000", require('../../../package.json').version)
+global.env = require('../../buildSrc/env.js').create(null, "http://localhost:9000", require('../../package.json').version)
 
 global.isBrowser = false
 
@@ -74,7 +74,7 @@ Module._resolveFilename = function (request, parent, isMain) {
 /**
  * runs this test exclusively on browsers (not nodec)
  */
-global.browser = function (func: Function) {
+global.browser = function (func) {
 	return function () {
 	}
 }
@@ -82,7 +82,7 @@ global.browser = function (func: Function) {
 /**
  * runs this test exclusively on node (not browsers)
  */
-global.node = function (func: Function) {
+global.node = function (func) {
 	return func
 }
 
@@ -94,6 +94,6 @@ process.on("unhandledRejection", function (e) {
 
 window.tutao = {}
 
-require("../../src/api/Env").bootFinished()
+require("../src/api/Env").bootFinished()
 
 require('./Suite.js')

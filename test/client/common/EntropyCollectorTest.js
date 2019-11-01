@@ -1,4 +1,4 @@
-import o from "ospec/ospec.js"
+import o from "ospec"
 import {EntropyCollector} from "../../../src/api/main/EntropyCollector"
 import {EntropySrc as EntropyType} from "../../../src/api/common/TutanotaConstants"
 import {mockFunction, unmockFunction} from "../../api/TestUtils"

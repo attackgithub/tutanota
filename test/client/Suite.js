@@ -21,7 +21,7 @@ import "./calendar/CalendarUtilsTest"
 import "./calendar/CalendarParsertest"
 import "./calendar/CalendarImporterTest"
 
-import o from "ospec/ospec.js"
+import o from "ospec"
 
 // node(() => {
 // 	require("./desktop/DesktopUtilsTest.js")

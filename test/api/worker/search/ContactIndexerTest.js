@@ -1,5 +1,5 @@
 // @flow
-import o from "ospec/ospec.js"
+import o from "ospec"
 import {_TypeModel as ContactModel, ContactTypeRef, createContact} from "../../../../src/api/entities/tutanota/Contact"
 import {ContactIndexer} from "../../../../src/api/worker/search/ContactIndexer"
 import {createContactAddress} from "../../../../src/api/entities/tutanota/ContactAddress"

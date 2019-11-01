@@ -1,5 +1,5 @@
 //@flow
-import o from "ospec/ospec.js"
+import o from "ospec"
 import {Notifications} from "../../../src/gui/Notifications"
 import type {Spy} from "../../api/TestUtils"
 import {spy} from "../../api/TestUtils"

@@ -1,5 +1,5 @@
 // @flow
-import o from "ospec/ospec.js"
+import o from "ospec"
 import {lang, languages} from "../../../src/misc/LanguageViewModel"
 import en from "../../../src/translations/en"
 import {

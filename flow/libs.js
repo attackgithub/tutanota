@@ -101,7 +101,7 @@ type StreamModule = {
 declare module 'mithril/stream/stream.js' {
 	declare export default StreamModule;
 }
-declare module 'ospec/ospec.js' {
+declare module 'ospec' {
 	declare export default any;
 }
 

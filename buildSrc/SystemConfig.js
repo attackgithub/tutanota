@@ -69,12 +69,7 @@ function devPlaygroundConfig(bundles) {
 
 function devTestConfig() {
 	return Object.assign({}, systemConfigTemplate, {
-		map: Object.assign({}, systemConfigTemplate.map, hotReloaderMap, {
-			"ospec/ospec.js": "../node_modules/ospec/ospec.js",
-			"velocity-animate": "../node_modules/velocity-animate/velocity.js",
-			"prismjs": "../node_modules/prismjs",
-			"faker": "../node_modules/faker/build/build/faker.min.js",
-		})
+		map: Object.assign({}, systemConfigTemplate.map, hotReloaderMap)
 	})
 }
 

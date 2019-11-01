@@ -1,5 +1,5 @@
 //@flow
-import o from "ospec/ospec.js"
+import o from "ospec"
 import {EntityRestCache} from "../../../src/api/worker/rest/EntityRestCache"
 import {createMailBody, MailBodyTypeRef} from "../../../src/api/entities/tutanota/MailBody"
 import type {OperationTypeEnum} from "../../../src/api/common/TutanotaConstants"

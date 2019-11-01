@@ -1,5 +1,5 @@
 // @flow
-import o from "ospec/ospec.js"
+import o from "ospec"
 import n from "../nodemocker"
 import type {UserInfo} from "../../../src/desktop/ApplicationWindow"
 import {downcast, noOp} from "../../../src/api/common/utils/Utils"

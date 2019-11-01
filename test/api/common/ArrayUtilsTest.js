@@ -1,5 +1,5 @@
 //@flow
-import o from "ospec/ospec.js"
+import o from "ospec"
 import {arrayEquals, concat, findLastIndex, insertIntoSortedArray, splitInChunks} from "../../../src/api/common/utils/ArrayUtils"
 
 o.spec("array utils", function () {

@@ -4,7 +4,7 @@ import {objToError, Queue, Request} from "../common/WorkerProtocol"
 import {UserController} from "../main/UserController"
 import type {HttpMethodEnum, MediaTypeEnum} from "../common/EntityFunctions"
 import {TypeRef} from "../common/EntityFunctions"
-import {assertMainOrNode, isDesktop, isMain} from "../Env"
+import {assertMainOrNode, isDesktop, isMain, isTest} from "../Env"
 import {TutanotaPropertiesTypeRef} from "../entities/tutanota/TutanotaProperties"
 import {load, loadRoot, setup} from "./Entity"
 import {nativeApp} from "../../native/NativeWrapper"
@@ -27,11 +27,6 @@ import {NotFoundError} from "../common/error/RestError"
 
 assertMainOrNode()
 
-
-function requireNodeOnly(path: string) {
-	return require(path)
-}
-
 type Message = {
 	id: string,
 	type: string,
@@ -51,45 +46,45 @@ export class WorkerClient {
 		initLocator(this)
 		this._initWorker()
 		this.initialized.then(() => {
-			this._initServices()
-		})
-		this._queue.setCommands({
-			execNative: (message: Message) =>
-				nativeApp.invokeNative(new Request(downcast(message.args[0]), downcast(message.args[1]))),
-			entityEvent: (message: Message) => {
-				locator.eventController.notificationReceived(downcast(message.args[0]), downcast(message.args[1]))
-				return Promise.resolve()
-			},
-			error: (message: Message) => {
-				throw objToError((message: any).args[0])
-			},
-			progress: (message: Message) => {
-				if (this._progressUpdater) {
-					this._progressUpdater(message.args[0])
+			this._queue.setCommands({
+				execNative: (message: Message) =>
+					nativeApp.invokeNative(new Request(downcast(message.args[0]), downcast(message.args[1]))),
+				entityEvent: (message: Message) => {
+					locator.eventController.notificationReceived(downcast(message.args[0]), downcast(message.args[1]))
+					return Promise.resolve()
+				},
+				error: (message: Message) => {
+					throw objToError((message: any).args[0])
+				},
+				progress: (message: Message) => {
+					if (this._progressUpdater) {
+						this._progressUpdater(message.args[0])
+					}
+					return Promise.resolve()
+				},
+				updateIndexState: (message: Message) => {
+					locator.search.indexState(downcast(message.args[0]))
+					return Promise.resolve()
+				},
+				updateWebSocketState: (message: Message) => {
+					this._wsConnection(downcast(message.args[0]));
+					return Promise.resolve()
+				},
+				counterUpdate: (message: Message) => {
+					locator.eventController.counterUpdateReceived(downcast(message.args[0]))
+					return Promise.resolve()
+				},
+				infoMessage: (message: Message) => {
+					this.infoMessages(downcast(message.args[0]))
+					return Promise.resolve()
 				}
-				return Promise.resolve()
-			},
-			updateIndexState: (message: Message) => {
-				locator.search.indexState(downcast(message.args[0]))
-				return Promise.resolve()
-			},
-			updateWebSocketState: (message: Message) => {
-				this._wsConnection(downcast(message.args[0]));
-				return Promise.resolve()
-			},
-			counterUpdate: (message: Message) => {
-				locator.eventController.counterUpdateReceived(downcast(message.args[0]))
-				return Promise.resolve()
-			},
-			infoMessage: (message: Message) => {
-				this.infoMessages(downcast(message.args[0]))
-				return Promise.resolve()
-			}
+			})
+			this._initServices()
 		})
 	}
 
 	_initWorker() {
-		if (typeof Worker !== 'undefined') {
+		if (typeof Worker !== 'undefined' && !isTest()) {
 			let worker
 			if (isDesktop()) {
 				let url = location.href
@@ -117,16 +112,17 @@ export class WorkerClient {
 		} else {
 			// node: we do not use workers but connect the client and the worker queues directly with each other
 			// attention: do not load directly with require() here because in the browser SystemJS would load the WorkerImpl in the client although this code is not executed
-			const workerModule = requireNodeOnly('./../worker/WorkerImpl.js')
-			const workerImpl = new workerModule.WorkerImpl(this, true, client.browserData())
-			workerImpl._queue._transport = {postMessage: msg => this._queue._handleMessage(msg)}
-			this._queue = new Queue(({
-				postMessage: function (msg) {
-					workerImpl._queue._handleMessage(msg)
+			this.initialized = System.import('./src/api/worker/WorkerImpl.js')
+			                         .then((workerModule) => {
+				                         const workerImpl = new workerModule.WorkerImpl(this, true, client.browserData())
+				                         workerImpl._queue._transport = {postMessage: msg => this._queue._handleMessage(msg)}
+				                         this._queue = new Queue(({
+					                         postMessage: function (msg) {
+						                         workerImpl._queue._handleMessage(msg)
 
-				}
-			}: any))
-			this.initialized = Promise.resolve()
+					                         }
+				                         }: any))
+			                         })
 		}
 	}
 

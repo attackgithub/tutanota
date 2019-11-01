@@ -1,5 +1,5 @@
 //@flow
-import o from "ospec/ospec.js"
+import o from "ospec"
 import {getPasswordStrength, _BAD_SEQUENCES, _getNbrOfSequenceChars} from "../../../src/misc/PasswordUtils"
 
 o.spec("PasswordUtilsTest", function () {

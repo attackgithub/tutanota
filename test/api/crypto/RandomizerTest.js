@@ -1,4 +1,4 @@
-import o from "ospec/ospec.js"
+import o from "ospec"
 import {random} from "../../../src/api/worker/crypto/Randomizer"
 import {CryptoError} from "../../../src/api/common/error/CryptoError"
 import sjcl from "../../../src/api/worker/crypto/lib/crypto-sjcl-1.0.7"

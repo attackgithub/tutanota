@@ -1,5 +1,5 @@
 // @flow
-import o from "ospec/ospec.js"
+import o from "ospec"
 import type {CalendarMonth} from "../../../src/calendar/CalendarUtils"
 import {getCalendarMonth, getStartOfWeek, getWeekNumber, parseTime} from "../../../src/calendar/CalendarUtils"
 import {lang} from "../../../src/misc/LanguageViewModel"

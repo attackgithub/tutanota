@@ -1,5 +1,5 @@
 // @flow
-import o from "ospec/ospec.js"
+import o from "ospec"
 import {loadAll, loadRoot, setup} from "../../../src/api/worker/EntityWorker"
 import {GroupType} from "../../../src/api/common/TutanotaConstants"
 import {ContactTypeRef, createContact} from "../../../src/api/entities/tutanota/Contact"

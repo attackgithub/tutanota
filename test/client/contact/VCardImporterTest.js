@@ -1,5 +1,5 @@
 // @flow
-import o from "ospec/ospec.js"
+import o from "ospec"
 import {createContact} from "../../../src/api/entities/tutanota/Contact"
 import {ContactAddressTypeRef} from "../../../src/api/entities/tutanota/ContactAddress"
 import {neverNull} from "../../../src/api/common/utils/Utils"

@@ -1,6 +1,6 @@
 // @flow
 import n from "../nodemocker"
-import o from "ospec/ospec.js"
+import o from "ospec"
 import chalk from 'chalk'
 
 o.spec("IPC tests", () => {
