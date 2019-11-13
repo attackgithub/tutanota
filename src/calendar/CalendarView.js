@@ -359,8 +359,8 @@ export class CalendarView implements CurrentView {
 		}
 	}
 
-	backButtonLabelShown(): boolean {
-		return true
+	overrideUpIcon(): boolean {
+		return this._currentViewType === CalendarViewType.WEEK || this._currentViewType === CalendarViewType.DAY
 	}
 
 	_onPressedAddCalendar() {
