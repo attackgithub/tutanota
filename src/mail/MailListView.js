@@ -11,7 +11,14 @@ import {getMailFolderType, MailFolderType, ReplyType} from "../api/common/Tutano
 import {MailView} from "./MailView"
 import {MailTypeRef} from "../api/entities/tutanota/Mail"
 import {assertMainOrNode} from "../api/Env"
-import {getArchiveFolder, getFolderName, getInboxFolder, getSenderOrRecipientHeading, isTutanotaTeamMail, showDeleteConfirmationDialog} from "./MailUtils"
+import {
+	getArchiveFolder,
+	getFolderName,
+	getInboxFolder,
+	getSenderOrRecipientHeading,
+	isTutanotaTeamMail,
+	showDeleteConfirmationDialog
+} from "./MailUtils"
 import {findAndApplyMatchingRule, isInboxList} from "./InboxRuleHandler"
 import {NotFoundError} from "../api/common/error/RestError"
 import {px, size} from "../gui/size"
@@ -21,11 +28,9 @@ import {mailModel} from "./MailModel"
 import {logins} from "../api/main/LoginController"
 import {FontIcons} from "../gui/base/icons/FontIcons"
 import Badge from "../gui/base/Badge"
-import {theme} from "../gui/theme"
-import {ButtonColors} from "../gui/base/ButtonN"
-import {Dialog} from "../gui/base/Dialog"
 import type {ButtonAttrs} from "../gui/base/ButtonN"
-import {ButtonN, ButtonType} from "../gui/base/ButtonN"
+import {ButtonColors, ButtonN, ButtonType} from "../gui/base/ButtonN"
+import {Dialog} from "../gui/base/Dialog"
 
 assertMainOrNode()
 
@@ -119,11 +124,7 @@ export class MailListView implements Component {
 
 		return this.showingTrashOrSpamFolder()
 			? m(".flex.flex-column.fill-absolute", [
-				m(".flex.flex-column.justify-center.plr-l.list-border-right.list-bg", {
-					style: {
-						'border-bottom': `1px solid ${theme.list_border}`,
-					}
-				}, [
+				m(".flex.flex-column.justify-center.plr-l.list-border-right.list-bg.list-header", [
 					m(".small.flex-grow.pt", lang.get("storageDeletion_msg")),
 					m(".mr-negative-s.align-self-end", m(ButtonN, purgeButtonAttrs))
 				]),
