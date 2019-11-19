@@ -1056,6 +1056,9 @@ module.exports = {
 		"existingMailAddress_msg": "The following email addresses could not be invited because they are either a participant or invited to the calendar:",
 		"invalidMailAddress_msg": "The following email addresses could not be invited because they are invalid:",
 		"tooManyMailsAuto_msg": "Failed to send an automatic notification email because the number of allowed emails has been exceeded. The notification email is stored in the draft folder and you can try to send it later.",
-		"deleteSharedCalendarConfirm_msg": "The calendar \"{calendar}\" is shared with other users.",
+		"deleteSharedCalendarConfirm_msg": "The calendar \"{calendar}\" is shared with other users. Are you sure that you want to delete it and all events in it?",
+		"desktopIntegration_label": "Desktop Integration",
+		"desktopIntegration_msg": "Do you want to integrate Tutanota into your Desktop Environment?",
+		"doNotAskAgain_label": "Don't ask again for this file",
 	}
 }

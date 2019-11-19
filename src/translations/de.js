@@ -1052,6 +1052,10 @@ module.exports = {
 		"member_label": "Mitglied",
 		"invited_label": "Eingeladen",
 		"addShareWarning_msg": "Durch die Freigabe eines Kalenders werden der Name und alle E-Mail-Adressen deiner Mailbox für die Gruppenmitglieder sichtbar.",
-		"acceptShareWarning_msg": "Durch Beitreten der Kalendar-Gruppe wird der Name und alle E-Mail-Adressen deiner Mailbox für die Gruppenmitglieder sichtbar."
+		"acceptShareWarning_msg": "Durch Beitreten der Kalendar-Gruppe wird der Name und alle E-Mail-Adressen deiner Mailbox für die Gruppenmitglieder sichtbar.",
+		"about_label": "Über",
+		"desktopIntegration_label": "Desktop-Integration",
+		"desktopIntegration_msg": "Soll Tutanota sich in deine Desktop-Umgebung integrieren, damit du Tutanota über dein Anwendungemenü starten kannst?",
+		"doNotAskAgain_label": "Nicht noch einmal fragen",
 	}
 }
