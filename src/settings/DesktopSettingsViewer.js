@@ -92,11 +92,12 @@ export class DesktopSettingsViewer implements UpdatableSettingsViewer {
 			}
 		}
 
+		// TODO: activated / deactivated
 		const setDesktopIntegrationAttrs: DropDownSelectorAttrs<boolean> = {
 			label: "desktopIntegration_label",
 			items: [
-				{name: lang.get("yes_label"), value: true},
-				{name: lang.get("no_label"), value: false}
+				{name: lang.get("activate_action"), value: true},
+				{name: lang.get("deactivate_action"), value: false}
 			],
 			selectedValue: this._isIntegrated,
 			selectionChangedHandler: v => {
@@ -140,21 +141,21 @@ export class DesktopSettingsViewer implements UpdatableSettingsViewer {
 				env.platformId === 'darwin' ? null : m(DropDownSelectorN, setRunAsTrayAppAttrs),
 				m(DropDownSelectorN, setRunOnStartupAttrs),
 				m(TextFieldN, defaultDownloadPathAttrs),
-				env.platformId !== 'linux' ? null : m(DropDownSelectorN, setDesktopIntegrationAttrs),
+				env.platformId === 'linux' ? m(DropDownSelectorN, setDesktopIntegrationAttrs) : null,
 			])
 		]
 	}
 
-	_updateDefaultMailtoHandler(v: boolean): Promise<void> {
-		if (v) {
+	_updateDefaultMailtoHandler(shouldBeDefaultMailtoHandler: boolean): Promise<void> {
+		if (shouldBeDefaultMailtoHandler) {
 			return nativeApp.invokeNative(new Request('registerMailto', []))
 		} else {
 			return nativeApp.invokeNative(new Request('unregisterMailto', []))
 		}
 	}
 
-	_updateDesktopIntegration(v: boolean): Promise<void> {
-		if (v) {
+	_updateDesktopIntegration(shouldIntegrate: boolean): Promise<void> {
+		if (shouldIntegrate) {
 			return nativeApp.invokeNative(new Request('integrateDesktop', []))
 		} else {
 			return nativeApp.invokeNative(new Request('unIntegrateDesktop', []))

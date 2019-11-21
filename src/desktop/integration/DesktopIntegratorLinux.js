@@ -6,6 +6,8 @@ import path from "path"
 import {lang} from "../../misc/LanguageViewModel"
 import {exec} from "child_process"
 
+
+// TODO use XDG_ env vars
 const executablePath = process.execPath
 const packagePath = process.env.APPIMAGE ? process.env.APPIMAGE : process.execPath
 const autoLaunchPath = path.join(app.getPath('home'), `.config/autostart/${app.name}.desktop`)
@@ -100,6 +102,7 @@ function getDesktopEntryVersion(): string {
 	return versionLine.split("=")[1]
 }
 
+// TODO catch errors for file creation
 export function integrate(): void {
 	const prefix = app.name.includes("test") ? "test " : ""
 	createDesktopEntry(prefix)
